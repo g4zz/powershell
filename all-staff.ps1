@@ -4,7 +4,7 @@
 $smtpServer="" # Address of SMTP server
 $emailaddress="" # Email address to send the export
 $from="" # Address email will be from
-$ou="'OU=Newcastle,OU=Staff,DC=scottlogic,DC=co,DC=uk'" # Organisational Unit you wish to search
+$ou="" # Organisational Unit you wish to search
 
 $textEncoding = [System.Text.Encoding]::UTF8
 
