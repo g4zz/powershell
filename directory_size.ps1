@@ -1,4 +1,6 @@
-﻿dir S:\ -Directory | foreach {
+﻿# Script to specify a directory and display the size of folders within
+
+dir C:\ -Directory | foreach {
     $stats = dir $_.FullName -Recurse -File |
     Measure-Object length -Sum
     $_ | Select-Object FullName,
