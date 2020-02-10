@@ -1,0 +1,12 @@
+{ 
+    "fields":
+    {
+        "Project":{"Key": "IT"},
+        "Summary":"Test UER",
+        "Issuetype":{"name": "Entitlement Review"},
+        "Assignee":{"key": "gemms"},
+        "Priority":{"id": "3"},
+        "Description":
+            "This is a test"
+    }
+}
