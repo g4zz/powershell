@@ -1,12 +1,18 @@
-﻿import-module JiraPS
+﻿# Create issues in Jira via API, using JiraPS 3rd party powershell module
 
-$server = 'https://scottlogic.atlassian.net'
-$cred = Get-Credential
+import-module JiraPS
 
+# Variables
+$server = 'server'
+$cred = Get-Credential # If using Jira cloud, your password needs to be your API token
+
+# Set jira server
 Set-JiraConfigServer -server $server
 
+# Getting each active directory group that has the 'managedby' field filled
 $MangedGroupName = Get-ADGroup -LDAPFilter '(managedby=*)' | Sort-Object -property Name
 
+# For each of the groups found fill in variables which will be used to create tickets via the API
 foreach($ManagedGroup in $MangedGroupName)
 {
 $UERreview = Get-ADGroup -Identity $ManagedGroup -Properties AdminDescription
@@ -21,6 +27,7 @@ $mgn = $ManagedGroup.name
 $groupmembers = $ManagedGroupMember.name
 $samaccountname = Get-ADUser $FindMangedByDetails | Select-Object -ExpandProperty SamAccountName
 
+# Parameters to use to create the ticket via the 'New-JiraIssue' command
 $parameters = @{
     Project = 'IT'
     IssueType = 'Entitlement Review'
@@ -38,6 +45,7 @@ $fields = @{
     )
 }
 
+# Create the issue using the parameters above
 New-JiraIssue @parameters -Fields $fields
 
 
