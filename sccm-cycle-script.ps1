@@ -1,4 +1,6 @@
-﻿$ComputerName=ws01103.scottlogic.co.uk
+﻿# Script to specify a machine and then invoke the commands to update themselves with SCCM
+
+$ComputerName=ws01103.scottlogic.co.uk
 
 Invoke-CMClientCycle -ComputerName $ComputerName -Cycle Application_Deployment_Evaluation
 Invoke-CMClientCycle -ComputerName $ComputerName -Cycle Discovery_Data_Collection
